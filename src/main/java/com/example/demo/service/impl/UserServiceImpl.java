@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -26,6 +28,11 @@ public class UserServiceImpl implements UserService {
 
 		// 插入新用户
 		return userMapper.insert(user) > 0;
+	}
+
+	@Override
+	public List<User> selectAllUsers() {
+		return userMapper.selectList(null);
 	}
 }
 
