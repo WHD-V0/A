@@ -8,4 +8,6 @@ public interface UserService {
 	boolean register(User user);
 
 	List<User> selectAllUsers();
+
+	User selectUserById(long id);
 }
