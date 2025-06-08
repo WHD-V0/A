@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +43,14 @@ public class UserController {
 	//	public User getUserById(@RequestParam("id") long id) {
 	//		return userService.selectUserById(id);
 	//	}
+
+	// 新增分页查询接口
+	@GetMapping("/page")
+	public IPage<User> getUserByPage(@RequestParam(defaultValue = "1") long current,
+									 @RequestParam(defaultValue = "2") long size) {
+		Page<User> page = new Page<>(current, size);
+		return userService.selectUserByPage(page);
+	}
 }
 
 

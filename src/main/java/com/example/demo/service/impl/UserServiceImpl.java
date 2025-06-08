@@ -2,6 +2,8 @@ package com.example.demo.service.impl;
 
 import java.util.List;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -38,6 +40,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User selectUserById(long id) {
 		return userMapper.selectById(id);
+	}
+
+	@Override
+	public IPage<User> selectUserByPage(Page<User> page){
+		return userMapper.selectPage(page, null);
 	}
 }
 
