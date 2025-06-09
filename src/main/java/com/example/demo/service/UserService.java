@@ -17,4 +17,19 @@ public interface UserService {
 	 * 分页查询
 	 */
 	IPage<User> selectUserByPage(Page<User> page);
+
+	/**
+	 * 用户登录功能
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	boolean login(String username, String password);
+
+	/**
+	 * 更新信息
+	 * @param user
+	 * @return
+	 */
+	boolean updateUser(User user);
 }

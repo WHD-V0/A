@@ -46,5 +46,22 @@ public class UserServiceImpl implements UserService {
 	public IPage<User> selectUserByPage(Page<User> page){
 		return userMapper.selectPage(page, null);
 	}
+
+	@Override  // 重写父类登录方法
+	public boolean login(String username, String password) {
+		// 创建QueryWrapper对象，用于构建查询条件
+		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+		// 设置查询条件：用户名和密码必须同时匹配
+		queryWrapper.eq("username", username)  // 用户名等于参数username
+				.eq("password", password); // 密码等于参数password
+		// 执行查询，如果找到匹配记录返回true，否则返回false
+		return userMapper.selectOne(queryWrapper) != null;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		return userMapper.updateById(user) > 0;
+	}
+
 }
 

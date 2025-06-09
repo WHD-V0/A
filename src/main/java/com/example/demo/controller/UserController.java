@@ -30,6 +30,12 @@ public class UserController {
 		return success ? "注册成功" : "用户名已存在";
 	}
 
+	@PostMapping("/login")
+	public String login(@RequestBody User user) {
+		boolean success = userService.login(user.getUsername(), user.getPassword());
+		return success ? "登录成功" : "用户名或密码错误";
+	}
+
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		return userService.selectAllUsers();
@@ -50,6 +56,12 @@ public class UserController {
 									 @RequestParam(defaultValue = "2") long size) {
 		Page<User> page = new Page<>(current, size);
 		return userService.selectUserByPage(page);
+	}
+
+	@PostMapping("/update")
+	public String updateUser(@RequestBody User user) {
+		boolean success = userService.updateUser(user);
+		return success ? "更新成功" : "更新失败";
 	}
 }
 
