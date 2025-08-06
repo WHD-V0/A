@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.demo.annotation.LogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("/register")
+	@LogAnnotation("用户注册")
 	public String register(@RequestBody User user) {
 		boolean success = userService.register(user);
 		return success ? "注册成功" : "用户名已存在";
